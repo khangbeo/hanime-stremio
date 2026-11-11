@@ -29,20 +29,20 @@ const manifest = {
   behaviorHints: {
     adult: true,
     configurable: true,
-    configurationRequired: true
+    configurationRequired: false
   },
   config: [
     {
       key: 'email',
       title: 'Email',
       type: 'text',
-      required: true
+      required: false
     },
     {
       key: 'password',
       title: 'Password',
       type: 'password',
-      required: true
+      required: false
     }
   ],
   catalogs: [
