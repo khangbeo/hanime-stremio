@@ -109,7 +109,7 @@ async function testVideoMetadataUsesSearchDatasetWithoutCallingRetiredEndpoint()
 
   assert.strictEqual(result.hentai_video.slug, 'test-video');
   assert.deepStrictEqual(requestedUrls, [
-    'https://hanime-handshake.skynetsource.com/api/v11/search_hvs'
+    'https://hanime-handshake-relay.khangbeo2012.workers.dev/api/v11/search_hvs'
   ]);
 }
 
@@ -134,7 +134,7 @@ async function testProductionSearchUsesAuthenticatedWorkerRelay() {
 
   assert.strictEqual(
     request.url,
-    'https://hanime-handshake.skynetsource.com/api/v11/search_hvs'
+    'https://hanime-handshake-relay.khangbeo2012.workers.dev/api/v11/search_hvs'
   );
   assert.strictEqual(request.options.headers.authorization, 'Bearer relay-secret');
   assert.strictEqual(request.options.headers['x-signature-version'], 'app2');
