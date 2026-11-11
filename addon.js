@@ -103,7 +103,11 @@ const manifest = {
       extra: constants.catalogExtrasMinimal
     }
   ],
-  resources: ['catalog', 'stream', 'meta'],
+  resources: [
+    { name: 'catalog', types: ['anime', 'series'], idPrefixes: ['hanime'] },
+    { name: 'stream', types: ['anime', 'series'], idPrefixes: ['hanime'] },
+    { name: 'meta', types: ['anime', 'series'], idPrefixes: ['hanime'] }
+  ],
   types: [constants.contentTypes.ANIME, constants.contentTypes.SERIES],
   idPrefixes: [constants.addonPrefix],
   name: config.addon.name,
