@@ -27,6 +27,7 @@ const manifest = {
   id: config.addon.id,
   version: config.addon.version,
   behaviorHints: {
+    adult: true,
     configurable: true,
     configurationRequired: false
   },
