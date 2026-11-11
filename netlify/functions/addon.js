@@ -97,13 +97,26 @@ app.get('/proxy/image/:id/:type', (req, res, next) => {
 app.use('/images', express.static(path.join(__dirname, '../../public/images')));
 app.use('/css', express.static(path.join(__dirname, '../../public/css')));
 
-app.get('/health', (req, res) => {
+const signatureService = require('../../lib/services/htv_signature_service');
+
+app.get('/health', async (req, res) => {
+  let signatureReady = false;
+  try {
+    signatureReady = await signatureService.init();
+  } catch (e) { /* bootError captured on the service */ }
   res.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
     version: addonInterface.manifest.version,
     cacheEnabled: config.cache.enabled,
-    prefetchEnabled: config.cache.prefetch?.enabled || false
+    prefetchEnabled: config.cache.prefetch?.enabled || false,
+    signatureReady,
+    signatureError: signatureService.bootError
+      ? String(signatureService.bootError.message || signatureService.bootError)
+      : null,
+    handshakeUrl: config.api.htv?.handshakeUrl || null,
+    searchUrl: config.api.searchUrl,
+    relaySecretSet: !!config.api.htv?.relaySecret
   });
 });
 
